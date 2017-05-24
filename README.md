@@ -1,95 +1,95 @@
 XIDL
 ===========
-idl½âÎöºÍ×ª»»¹¤¾ß£¬Ò»°ãÓÃÓÚ×Ô¶¯Éú³É¸ñÊ½±È½Ï¹Ì¶¨µÄ´úÂë£¬Èç¶àÓïÑÔ»¥µ÷¡¢¶ÔÏóĞòÁĞ»¯µÈ
+idlè§£æå’Œè½¬æ¢å·¥å…·ï¼Œä¸€èˆ¬ç”¨äºè‡ªåŠ¨ç”Ÿæˆæ ¼å¼æ¯”è¾ƒå›ºå®šçš„ä»£ç ï¼Œå¦‚å¤šè¯­è¨€äº’è°ƒã€å¯¹è±¡åºåˆ—åŒ–ç­‰
 
 
-°²×°ËµÃ÷£º
+å®‰è£…è¯´æ˜ï¼š
 -----------
-  °²×°nodejs£¬Ìí¼ÓnodejsËùÔÚÄ¿Â¼µ½PATH»·¾³±äÁ¿
-  Ìí¼ÓxidlËùÔÚÄ¿Â¼µ½PATH»·¾³±äÁ¿
+1. å®‰è£…nodejsï¼Œæ·»åŠ nodejsæ‰€åœ¨ç›®å½•åˆ°PATHç¯å¢ƒå˜é‡
+1. æ·»åŠ xidlæ‰€åœ¨ç›®å½•åˆ°PATHç¯å¢ƒå˜é‡
 
   
-Ê¹ÓÃËµÃ÷£º
+ä½¿ç”¨è¯´æ˜ï¼š
 -----------
 ```
   xidl <template> <input> <output>
 ```
-  - template ±íÊ¾×ª»»Ä£°åÎÄ¼ş
-  - input ±íÊ¾ÊäÈëÎÄ¼ş»òÄ¿Â¼£¬Èç¹ûÊÇÄ¿Â¼»á×ª»»¸ÃÄ¿Â¼ÏÂµÄ.idlÎÄ¼ş
-  - output ±íÊ¾Êä³öÎÄ¼ş£¬Èç¹ûinputÊÇÄ¿Â¼£¬ÔòoutputĞèÒªÊÇ´øÍ¨Åä·ûÎÄ¼şÃû
+  - template è¡¨ç¤ºè½¬æ¢æ¨¡æ¿æ–‡ä»¶
+  - input è¡¨ç¤ºè¾“å…¥æ–‡ä»¶æˆ–ç›®å½•ï¼Œå¦‚æœæ˜¯ç›®å½•ä¼šè½¬æ¢è¯¥ç›®å½•ä¸‹çš„.idlæ–‡ä»¶
+  - output è¡¨ç¤ºè¾“å‡ºæ–‡ä»¶ï¼Œå¦‚æœinputæ˜¯ç›®å½•ï¼Œåˆ™outputéœ€è¦æ˜¯å¸¦é€šé…ç¬¦æ–‡ä»¶å
     
-  - ÀıÈç xidl "cxxhead.js" "User.idl" "./out/User.h"
-  - ÀıÈç xidl "jsbind.js" "." "./out/*.cpp"
+  - ä¾‹å¦‚ xidl "cxxhead.js" "User.idl" "./out/User.h"
+  - ä¾‹å¦‚ xidl "jsbind.js" "." "./out/*.cpp"
     
 
-xidlÊµÏÖÔ­Àí£º
+xidlå®ç°åŸç†ï¼š
 -----------
-1. xidl¹¤¾ß½âÎö½Ó¿ÚÃèÊöidlÎÄ¼ş£¬µÃµ½½Ó¿ÚÃèÊöµÄ¶ÔÏó(JavaScript Object)   
-2. ×ª»»Ä£°åÄ£¿é½«js¶ÔÏó£¬×ª»»³É×îÖÕËùĞèÎÄ¼şÄÚÈİ
+1. xidlå·¥å…·è§£ææ¥å£æè¿°idlæ–‡ä»¶ï¼Œå¾—åˆ°æ¥å£æè¿°çš„å¯¹è±¡(JavaScript Object)   
+2. è½¬æ¢æ¨¡æ¿æ¨¡å—å°†jså¯¹è±¡ï¼Œè½¬æ¢æˆæœ€ç»ˆæ‰€éœ€æ–‡ä»¶å†…å®¹
 
 
-- idlÎÄ¼şÊ¾Àı
+- idlæ–‡ä»¶ç¤ºä¾‹
 ```
 interface ListView : View{
-    //³£Á¿
+    //å¸¸é‡
     const int FLAG_VSCROLL = 1;
     const int FLAG_HSCROLL = 2;
     
-    //ÊôĞÔ
+    //å±æ€§
     string name;
     string text;
     
-    //·½·¨
+    //æ–¹æ³•
     void SetBounds(int left, int top, int right, int bottom);    
     void SetVisible([optional]bool visible);
 };
 ```
 
 
-- ×ª»»Ä£°æÎÄ¼ş
-  - ×ª»»Ä£°æÎÄ¼şÊÇÒ»¸önodejsÄ£¿é£¬ĞèÊµÏÖÒ»¸öconvert()º¯Êı£¬ÓÃÓÚ×ª»»´úÂë¡£
-  - ¸Ãº¯ÊıÔ­ĞÍÈçString convert(String src, Object[] interfaces)
-    - src: idlÎÄ¼şÄÚÈİ
-    - interfaces: idl½âÎö½á¹ûjs¶ÔÏó£¬°üº¬Ò»¸ö»ò¶à¸öIDLInterface
-    - ·µ»ØÖµ: Éú³ÉÎÄ¼şµÄÄÚÈİ
+- è½¬æ¢æ¨¡ç‰ˆæ–‡ä»¶
+  - è½¬æ¢æ¨¡ç‰ˆæ–‡ä»¶æ˜¯ä¸€ä¸ªnodejsæ¨¡å—ï¼Œéœ€å®ç°ä¸€ä¸ªconvert()å‡½æ•°ï¼Œç”¨äºè½¬æ¢ä»£ç ã€‚
+  - è¯¥å‡½æ•°åŸå‹å¦‚String convert(String src, Object[] interfaces)
+    - src: idlæ–‡ä»¶å†…å®¹
+    - interfaces: idlè§£æç»“æœjså¯¹è±¡ï¼ŒåŒ…å«ä¸€ä¸ªæˆ–å¤šä¸ªIDLInterface
+    - è¿”å›å€¼: ç”Ÿæˆæ–‡ä»¶çš„å†…å®¹
 
     
-- js¶ÔÏóÊôĞÔ²Î¿¼
+- jså¯¹è±¡å±æ€§å‚è€ƒ
 ```
 
-//ÆäËû¶ÔÏóµÄ»ùÀà
+//å…¶ä»–å¯¹è±¡çš„åŸºç±»
 IDLObject{
-    string name;  //Ãû³Æ
-    string type;   //ÀàĞÍ 
-    string extended;  //À©Õ¹ÊôĞÔ,À¨ºÅ[]ÀïÃæµÄÄÚÈİ    
+    string name;  //åç§°
+    string type;   //ç±»å‹ 
+    string extended;  //æ‰©å±•å±æ€§,æ‹¬å·[]é‡Œé¢çš„å†…å®¹    
 };
 
-//½Ó¿Ú 
+//æ¥å£ 
 IDLInterface : IDLObject{
-    string superName; //¸¸½Ó¿Ú
-    array constants;  //³£Á¿
-    array attributes; //ÊôĞÔ
-    array operations; //·½·¨
+    string superName; //çˆ¶æ¥å£
+    array constants;  //å¸¸é‡
+    array attributes; //å±æ€§
+    array operations; //æ–¹æ³•
 };
 
-//³£Á¿
+//å¸¸é‡
 IDLConstant : IDLObject{
-    string value; //³£Á¿Öµ
+    string value; //å¸¸é‡å€¼
 };
 
-//ÊôĞÔ
+//å±æ€§
 IDLAttribute: IDLObject{
-    boolean isStatic;  //ÊÇ·ñ¾²Ì¬
-    boolean isReadonly; //ÊÇ·ñÖ»¶Á 
+    boolean isStatic;  //æ˜¯å¦é™æ€
+    boolean isReadonly; //æ˜¯å¦åªè¯» 
 };
 
-//·½·¨£¨type=·µ»ØÖµÀàĞÍ£©
+//æ–¹æ³•ï¼ˆtype=è¿”å›å€¼ç±»å‹ï¼‰
 IDLOperation: IDLObject{
-    array arguments; //²ÎÊıÁĞ±í
-    boolean isStatic; //ÊÇ·ñ¾²Ì¬   
+    array arguments; //å‚æ•°åˆ—è¡¨
+    boolean isStatic; //æ˜¯å¦é™æ€   
 };
 
-//²ÎÊı 
+//å‚æ•° 
 IDLArgument: IDLObject{ 
 };
 
