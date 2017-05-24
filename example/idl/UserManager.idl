@@ -1,0 +1,11 @@
+
+
+
+interface UserManager{
+
+    static User getUser(int id);
+	
+    static int createUser(User u, string password);
+	
+	static User login(string loginname, string password);
+};

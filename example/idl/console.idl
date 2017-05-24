@@ -1,0 +1,8 @@
+
+
+
+interface console{
+
+static void log(string msg);
+
+};

@@ -1,0 +1,9 @@
+
+struct User{   
+    int id;
+	string loginname;	
+	string nickname;
+    int birthday;
+	bool male;
+};
+
