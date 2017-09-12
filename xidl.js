@@ -287,6 +287,7 @@ function /*boolean*/ nextValidStatement(data, token, arr){
 //解析一个函数 int fn(int a)
 function /*boolean*/ parseOperation(arr, func){    
     //func.isStatic = false;
+	func.extended = "";
     func.type = "";
     func.name = "";    
     func.arguments = new Array();
@@ -329,6 +330,7 @@ function /*boolean*/ parseOperation(arr, func){
 
 //解析一个常量 const int A = 123
 function /*boolean*/ parseConstant(arr, cnst){
+	cnst.extended = "";
     cnst.type = "";
     cnst.name = "";
     if(arr.length < 5)return false;
@@ -346,6 +348,7 @@ function /*boolean*/ parseConstant(arr, cnst){
 function /*boolean*/ parseArrtibute(arr, attr){
     //attr.isReadonly = false;
     //attr.isStatic = false;
+	attr.extended = "";
     attr.type = "";
     attr.name = "";    
     if(arr.length < 2)return false;
@@ -360,7 +363,8 @@ function /*boolean*/ parseArrtibute(arr, attr){
 }
 
 //解析一个成员
-function /*boolean*/ parseMember(data, token, obj, member){    
+function /*boolean*/ parseMember(data, token, obj, member){
+   
     var arr = new Array();
     if(!nextValidStatement(data, token, arr))return false;    
     arr.reverse();    
@@ -379,6 +383,7 @@ function /*boolean*/ parseMember(data, token, obj, member){
 
 //解析一个interface  
 function /*boolean*/ parseInterface(data, token, obj){
+	obj.extended = "";
     obj.attributes = new Array();
     obj.operations = new Array();
     obj.constants = new Array();
