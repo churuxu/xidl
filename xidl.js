@@ -139,6 +139,9 @@ const CHAR_CODE_SLASH = 0x2F; //  /
 const CHAR_CODE_STAR = 0x2A;  //  *
 const CHAR_CODE_LBRACKET  = 0x5B;  //  [
 const CHAR_CODE_RBRACKET  = 0x5D;  //  ]
+const CHAR_CODE_LT  = 0x3C;  //  <
+const CHAR_CODE_GT  = 0x3E;  //  >
+
 function /*boolean*/ nextWord(data, token){
     if(token.next == undefined){
         token.next = 0;
@@ -153,7 +156,7 @@ function /*boolean*/ nextWord(data, token){
     var nch = 0;    
     var stop = false;
     var index1 = 0;
-
+	var hasltquot = false; //包含 <
     
     //去除开头所有空格或空字符 
     while(!stop){
@@ -193,6 +196,7 @@ function /*boolean*/ nextWord(data, token){
     }  
     if(stop)return false;
     
+	
     //如果是/*开头，找到*/位置
     if(ch == CHAR_CODE_SLASH && nch == CHAR_CODE_STAR){ 
         while(!stop){
@@ -250,12 +254,21 @@ function /*boolean*/ nextWord(data, token){
             token.word = data.substring(index1, next);
 			return true;
         }
-        ch = data.charCodeAt(next);	        
-        if(ch < 0xff && CHAR_TYPE[ch] > 0){
- 			token.next = next;
-            token.word = data.substring(index1, next);
-			return true;
-        } 
+        ch = data.charCodeAt(next);	
+		if(ch == CHAR_CODE_LT)hasltquot = true;
+		if(hasltquot){
+			if(ch == CHAR_CODE_GT){
+				token.next = next + 1;
+				token.word = data.substring(index1, next+1);
+				return true;
+			} 			
+		}else{
+			if(ch < 0xff && CHAR_TYPE[ch] > 0){
+				token.next = next;
+				token.word = data.substring(index1, next);
+				return true;
+			} 
+		}
         
     }
     return false;
@@ -356,6 +369,7 @@ function /*boolean*/ parseArrtibute(arr, attr){
     attr.type = arr[1];
     for(var i=2; i<arr.length; i++){
         if(arr[i]=="readonly")attr.isReadonly = true;
+		if(arr[i]=="writeonly")attr.isWriteonly = true;
         if(arr[i]=="static")attr.isStatic = true;
         if(arr[i].charAt(0)=='[')attr.extended = arr[i];
     }
