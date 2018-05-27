@@ -465,7 +465,8 @@ function /* array<IDLInterface> */ parseIDL(data){
 function processFile(file, out){
 	var data = readFileText(file);
 	var res = parseIDL(data);
-	var fdata = mod.convert(data, res);
+	var filename = path.basename(file);
+	var fdata = mod.convert(filename, res);
 	if(fdata.length){
 		console.log(file +"\t-->\t" + out)
 		saveFileText(out, fdata);
