@@ -17,3 +17,26 @@ var o2 = UserManager.getUser(id2);
 console.log(JSON.stringify(o1));
 console.log(JSON.stringify(o2));
 
+function wf(){
+var f = new FileStream("test.txt", FileStream.WRITE);
+
+var a = new Int8Array(6);
+a[0] = 0x00;
+a[1] = 0x01;
+a[2] = 0x02;
+a[3] = 0x00;
+a[4] = 0x08;
+a[5] = 0x00;
+f.write(a);
+f.write("hello world");
+}
+
+function rf(){
+var f = new FileStream("test.txt", FileStream.READ);
+var buf = f.read(1024);
+console.log(" "+ buf.length);
+console.log(" "+ buf[4]);
+}
+
+wf();
+rf();

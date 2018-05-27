@@ -402,7 +402,17 @@ function /*boolean*/ parseInterface(data, token, obj){
     obj.operations = new Array();
     obj.constants = new Array();
     if(token.type == 'extended'){
-        obj.extended = token.word;
+        obj.extended = token.word;		
+		try{
+			var str = obj.extended.substr(1, obj.extended.length -2);			
+			var extobj = eval("({"+str+"})");
+			//console.log(JSON.stringify(extobj));
+			for(var key in extobj){
+				obj[key] = extobj[key];				
+			}			
+		}catch(e){
+			//console.log(e);
+		}
         if(!nextValidWord(data, token))return false;
     }
     if(token.word == "interface" || token.word == "struct"){

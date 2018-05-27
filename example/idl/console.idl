@@ -1,7 +1,7 @@
 
 
-
-interface console{
+[alias(console)]
+interface Console{
 
 static void log(string msg);
 
